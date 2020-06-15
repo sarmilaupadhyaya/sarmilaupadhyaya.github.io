@@ -21,20 +21,6 @@
   </url>
   
   <url>
-    <loc>https://sarmilaupadhyaya.github.io/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="https://sarmilaupadhyaya.github.io/fr/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://sarmilaupadhyaya.github.io/"
-                />
-  </url>
-  
-  <url>
     <loc>https://sarmilaupadhyaya.github.io/series/</loc>
     <xhtml:link
                 rel="alternate"
@@ -59,6 +45,20 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://sarmilaupadhyaya.github.io/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://sarmilaupadhyaya.github.io/fr/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://sarmilaupadhyaya.github.io/"
                 />
   </url>
   
