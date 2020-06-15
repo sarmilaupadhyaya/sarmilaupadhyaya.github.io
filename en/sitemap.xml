@@ -3,6 +3,116 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://sarmilaupadhyaya.github.io/tags/google-drive/</loc>
+    <lastmod>2019-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/post/2019-11-06-google-collab-dataset/</loc>
+    <lastmod>2019-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/post/</loc>
+    <lastmod>2019-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/tags/python/</loc>
+    <lastmod>2019-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/tags/</loc>
+    <lastmod>2019-11-06T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://sarmilaupadhyaya.github.io/fr/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://sarmilaupadhyaya.github.io/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/</loc>
+    <lastmod>2019-11-06T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="fr"
+                href="https://sarmilaupadhyaya.github.io/fr/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://sarmilaupadhyaya.github.io/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/post/2019-10-31-tutorial-documentation/</loc>
+    <lastmod>2019-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/tags/chatbot/</loc>
+    <lastmod>2019-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/tags/nlp/</loc>
+    <lastmod>2019-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/tags/rasa/</loc>
+    <lastmod>2019-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/tags/welcome-note/</loc>
+    <lastmod>2019-10-22T17:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/post/2017-07-27-welcome/</loc>
+    <lastmod>2019-10-22T17:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/tags/glove/</loc>
+    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/post/2019-09-11-loading-glove-pre-trained-word-embedding-model-from-text-file-faster/</loc>
+    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/tags/word-embeddings/</loc>
+    <lastmod>2019-09-11T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/tags/dimension-reduction/</loc>
+    <lastmod>2018-12-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/tags/machine-learning/</loc>
+    <lastmod>2018-12-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://sarmilaupadhyaya.github.io/post/2018-12-06-sammon-mapping-using-steepest-descent-iterative-approach/</loc>
+    <lastmod>2018-12-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://sarmilaupadhyaya.github.io/about/</loc>
   </url>
   
@@ -31,34 +141,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://sarmilaupadhyaya.github.io/series/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://sarmilaupadhyaya.github.io/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="https://sarmilaupadhyaya.github.io/fr/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://sarmilaupadhyaya.github.io/tags/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://sarmilaupadhyaya.github.io/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="fr"
-                href="https://sarmilaupadhyaya.github.io/fr/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://sarmilaupadhyaya.github.io/"
                 />
   </url>
   

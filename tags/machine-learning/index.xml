@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning on 🤓 Sharmila Upadhyaya 🤓</title>
+    <link>https://sarmilaupadhyaya.github.io/tags/machine-learning/</link>
+    <description>Recent content in Machine Learning on 🤓 Sharmila Upadhyaya 🤓</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Thu, 06 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sarmilaupadhyaya.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sammon Mapping Using Steepest-Descent Iterative Approach</title>
+      <link>https://sarmilaupadhyaya.github.io/post/2018-12-06-sammon-mapping-using-steepest-descent-iterative-approach/</link>
+      <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sarmilaupadhyaya.github.io/post/2018-12-06-sammon-mapping-using-steepest-descent-iterative-approach/</guid>
+      <description>Sammon mapping (SM), an algorithm for dimensionality reduction, follows non-linear projection based mapping of N-dimensional data to a lower dimension.
+Why projecting?
+Projection is one of the major step used during visualization and data analysis. We can easily picture data in 2D as well as 3D but anything higher than these dimensions, it is difficult for us to visualize. In such a case, we need to project whole datasets to a lower dimension (i.</description>
+    </item>
+    
+  </channel>
+</rss>

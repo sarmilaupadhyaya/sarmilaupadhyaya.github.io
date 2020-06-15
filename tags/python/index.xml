@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>🤓 Sharmila Upadhyaya 🤓</title>
-    <link>https://sarmilaupadhyaya.github.io/</link>
-    <description>Recent content on 🤓 Sharmila Upadhyaya 🤓</description>
+    <title>python on 🤓 Sharmila Upadhyaya 🤓</title>
+    <link>https://sarmilaupadhyaya.github.io/tags/python/</link>
+    <description>Recent content in python on 🤓 Sharmila Upadhyaya 🤓</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
     <lastBuildDate>Wed, 06 Nov 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://sarmilaupadhyaya.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sarmilaupadhyaya.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -33,15 +33,6 @@ It is an open-source machine learning framework to create virtual assistants/cha
     </item>
     
     <item>
-      <title>Welcome to my blog</title>
-      <link>https://sarmilaupadhyaya.github.io/post/2017-07-27-welcome/</link>
-      <pubDate>Tue, 22 Oct 2019 17:00:00 +0000</pubDate>
-      
-      <guid>https://sarmilaupadhyaya.github.io/post/2017-07-27-welcome/</guid>
-      <description>Hey! Welcome to my blog. I am Sharmila Upadhyaya, an Natural Language Processing Engineer. I am enthusiast machine learning explorer and trying to fit in the tech world. Besides tech and all mind boggling amazing NLP problems, I find time to sing and write poems. I occassonally travel too and will try to include my experience here. :)</description>
-    </item>
-    
-    <item>
       <title>Loading Glove Pre-trained Word Embedding Model from Text File [Faster]</title>
       <link>https://sarmilaupadhyaya.github.io/post/2019-09-11-loading-glove-pre-trained-word-embedding-model-from-text-file-faster/</link>
       <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
@@ -49,27 +40,6 @@ It is an open-source machine learning framework to create virtual assistants/cha
       <guid>https://sarmilaupadhyaya.github.io/post/2019-09-11-loading-glove-pre-trained-word-embedding-model-from-text-file-faster/</guid>
       <description>With the evolution of transfer learning approaches in image processing, the field of Natural Language Processing has also a ubiquitous pre-trained model which is used for multiple states of the art transfer learning solutions for Text classification, Named Entity Recognition.
 And this pre-trained model is Word Embeddings. Word embedding is a vector representation of vocabulary which is trained following the concept “meaning of the word is carried by its correspondence” Excuse me if I have misphrased Ahem!</description>
-    </item>
-    
-    <item>
-      <title>Sammon Mapping Using Steepest-Descent Iterative Approach</title>
-      <link>https://sarmilaupadhyaya.github.io/post/2018-12-06-sammon-mapping-using-steepest-descent-iterative-approach/</link>
-      <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://sarmilaupadhyaya.github.io/post/2018-12-06-sammon-mapping-using-steepest-descent-iterative-approach/</guid>
-      <description>Sammon mapping (SM), an algorithm for dimensionality reduction, follows non-linear projection based mapping of N-dimensional data to a lower dimension.
-Why projecting?
-Projection is one of the major step used during visualization and data analysis. We can easily picture data in 2D as well as 3D but anything higher than these dimensions, it is difficult for us to visualize. In such a case, we need to project whole datasets to a lower dimension (i.</description>
-    </item>
-    
-    <item>
-      <title>About Sharmila</title>
-      <link>https://sarmilaupadhyaya.github.io/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://sarmilaupadhyaya.github.io/about/</guid>
-      <description>Hello! I am Sharmila Upadhyaya trying to manage my chaotic contents by powering it with blog writing. I am working as an Natural Language Pro essing Engineer while being Computer Science enthusiast, learning about UNIX system, Data Science, Mathematics and Programming. I am trying to learn, improve everyday, struggling to increase my attention span and abilities to explain wonders.
-I have worked in text analytics (sentiment analysis, text classification), chatbots. If you have any queries regarding latest chatbot systems, feel free to ping me in linkedin, twitter.</description>
     </item>
     
   </channel>

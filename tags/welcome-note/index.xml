@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Welcome Note on 🤓 Sharmila Upadhyaya 🤓</title>
+    <link>https://sarmilaupadhyaya.github.io/tags/welcome-note/</link>
+    <description>Recent content in Welcome Note on 🤓 Sharmila Upadhyaya 🤓</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Tue, 22 Oct 2019 17:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sarmilaupadhyaya.github.io/tags/welcome-note/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Welcome to my blog</title>
+      <link>https://sarmilaupadhyaya.github.io/post/2017-07-27-welcome/</link>
+      <pubDate>Tue, 22 Oct 2019 17:00:00 +0000</pubDate>
+      
+      <guid>https://sarmilaupadhyaya.github.io/post/2017-07-27-welcome/</guid>
+      <description>Hey! Welcome to my blog. I am Sharmila Upadhyaya, an Natural Language Processing Engineer. I am enthusiast machine learning explorer and trying to fit in the tech world. Besides tech and all mind boggling amazing NLP problems, I find time to sing and write poems. I occassonally travel too and will try to include my experience here. :)</description>
+    </item>
+    
+  </channel>
+</rss>

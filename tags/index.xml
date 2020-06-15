@@ -7,9 +7,100 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 06 Nov 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://sarmilaupadhyaya.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>google drive</title>
+      <link>https://sarmilaupadhyaya.github.io/tags/google-drive/</link>
+      <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sarmilaupadhyaya.github.io/tags/google-drive/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://sarmilaupadhyaya.github.io/tags/python/</link>
+      <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sarmilaupadhyaya.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>chatbot</title>
+      <link>https://sarmilaupadhyaya.github.io/tags/chatbot/</link>
+      <pubDate>Thu, 31 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sarmilaupadhyaya.github.io/tags/chatbot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nlp</title>
+      <link>https://sarmilaupadhyaya.github.io/tags/nlp/</link>
+      <pubDate>Thu, 31 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sarmilaupadhyaya.github.io/tags/nlp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rasa</title>
+      <link>https://sarmilaupadhyaya.github.io/tags/rasa/</link>
+      <pubDate>Thu, 31 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sarmilaupadhyaya.github.io/tags/rasa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Welcome Note</title>
+      <link>https://sarmilaupadhyaya.github.io/tags/welcome-note/</link>
+      <pubDate>Tue, 22 Oct 2019 17:00:00 +0000</pubDate>
+      
+      <guid>https://sarmilaupadhyaya.github.io/tags/welcome-note/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>glove</title>
+      <link>https://sarmilaupadhyaya.github.io/tags/glove/</link>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sarmilaupadhyaya.github.io/tags/glove/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>word embeddings</title>
+      <link>https://sarmilaupadhyaya.github.io/tags/word-embeddings/</link>
+      <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sarmilaupadhyaya.github.io/tags/word-embeddings/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Dimension Reduction</title>
+      <link>https://sarmilaupadhyaya.github.io/tags/dimension-reduction/</link>
+      <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sarmilaupadhyaya.github.io/tags/dimension-reduction/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Machine Learning</title>
+      <link>https://sarmilaupadhyaya.github.io/tags/machine-learning/</link>
+      <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sarmilaupadhyaya.github.io/tags/machine-learning/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

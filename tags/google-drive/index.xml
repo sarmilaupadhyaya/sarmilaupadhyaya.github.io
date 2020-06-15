@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>google drive on 🤓 Sharmila Upadhyaya 🤓</title>
+    <link>https://sarmilaupadhyaya.github.io/tags/google-drive/</link>
+    <description>Recent content in google drive on 🤓 Sharmila Upadhyaya 🤓</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Wed, 06 Nov 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sarmilaupadhyaya.github.io/tags/google-drive/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Loading Dataset into Google Collaboration using different way</title>
+      <link>https://sarmilaupadhyaya.github.io/post/2019-11-06-google-collab-dataset/</link>
+      <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sarmilaupadhyaya.github.io/post/2019-11-06-google-collab-dataset/</guid>
+      <description>Google collab provides an ubiquitous platform for all of us, with different hardware selection (CPU, GPU and TPU) band 12 GB of RAM (25 GB if your session crashes. I sometimes willingly crash the collab with some sample of code so that I will get 25 GB of ram for that particular session). At least in the case of training any model, I, personally prefer google collab to build and train my model.</description>
+    </item>
+    
+  </channel>
+</rss>
