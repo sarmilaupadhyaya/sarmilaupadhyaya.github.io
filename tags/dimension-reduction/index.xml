@@ -14,10 +14,10 @@
     
     <item>
       <title>Sammon Mapping Using Steepest-Descent Iterative Approach</title>
-      <link>https://sarmilaupadhyaya.github.io/post/2018-12-06-sammon-mapping-using-steepest-descent-iterative-approach/</link>
+      <link>https://sarmilaupadhyaya.github.io/posts/2018/12/sammon-mapping-using-steepest-descent-iterative-approach/</link>
       <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://sarmilaupadhyaya.github.io/post/2018-12-06-sammon-mapping-using-steepest-descent-iterative-approach/</guid>
+      <guid>https://sarmilaupadhyaya.github.io/posts/2018/12/sammon-mapping-using-steepest-descent-iterative-approach/</guid>
       <description>Sammon mapping (SM), an algorithm for dimensionality reduction, follows non-linear projection based mapping of N-dimensional data to a lower dimension.
 Why projecting?
 Projection is one of the major step used during visualization and data analysis. We can easily picture data in 2D as well as 3D but anything higher than these dimensions, it is difficult for us to visualize. In such a case, we need to project whole datasets to a lower dimension (i.</description>

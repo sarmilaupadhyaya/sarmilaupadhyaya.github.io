@@ -14,10 +14,10 @@
     
     <item>
       <title>Loading Dataset into Google Collaboration using different way</title>
-      <link>https://sarmilaupadhyaya.github.io/post/2019-11-06-google-collab-dataset/</link>
+      <link>https://sarmilaupadhyaya.github.io/posts/2019/11/loading-dataset-into-google-collaboration-using-different-way/</link>
       <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://sarmilaupadhyaya.github.io/post/2019-11-06-google-collab-dataset/</guid>
+      <guid>https://sarmilaupadhyaya.github.io/posts/2019/11/loading-dataset-into-google-collaboration-using-different-way/</guid>
       <description>Google collab provides an ubiquitous platform for all of us, with different hardware selection (CPU, GPU and TPU) band 12 GB of RAM (25 GB if your session crashes. I sometimes willingly crash the collab with some sample of code so that I will get 25 GB of ram for that particular session). At least in the case of training any model, I, personally prefer google collab to build and train my model.</description>
     </item>
     

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="sharmila">
+<meta name="description" content="Google collab provides an ubiquitous platform for all of us, with different hardware selection (CPU, GPU and TPU) band 12 GB of RAM (25 GB if your session crashes. I sometimes willingly crash the collab with some sample of code so that I will get 25 GB of ram for that particular session). At least in the case of training any model, I, personally prefer google collab to build and train my model." />
+<meta name="keywords" content=", python, google drive" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="#252627" />
+<link rel="canonical" href="https://sarmilaupadhyaya.github.io/posts/2019/11/loading-dataset-into-google-collaboration-using-different-way/" />
+
+
+    <title>
+        
+            Loading Dataset into Google Collaboration using different way :: 🤓 Sharmila Upadhyaya 🤓  — Hello Friend NG Theme
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://sarmilaupadhyaya.github.io/main.dede02da9537a98158079c023e83573e18127834838ef08172acce888341a797.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://sarmilaupadhyaya.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://sarmilaupadhyaya.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://sarmilaupadhyaya.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://sarmilaupadhyaya.github.io/site.webmanifest">
+    <link rel="mask-icon" href="https://sarmilaupadhyaya.github.io/safari-pinned-tab.svg" color="#252627">
+    <link rel="shortcut icon" href="https://sarmilaupadhyaya.github.io/favicon.ico">
+    <meta name="msapplication-TileColor" content="#252627">
+    <meta name="theme-color" content="#252627">
+
+
+
+<meta itemprop="name" content="Loading Dataset into Google Collaboration using different way">
+<meta itemprop="description" content="Google collab provides an ubiquitous platform for all of us, with different hardware selection (CPU, GPU and TPU) band 12 GB of RAM (25 GB if your session crashes. I sometimes willingly crash the collab with some sample of code so that I will get 25 GB of ram for that particular session). At least in the case of training any model, I, personally prefer google collab to build and train my model.">
+<meta itemprop="datePublished" content="2019-11-06T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-11-06T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="638">
+<meta itemprop="image" content="https://sarmilaupadhyaya.github.io/"/>
+
+
+
+<meta itemprop="keywords" content="python,google drive," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://sarmilaupadhyaya.github.io/"/>
+
+<meta name="twitter:title" content="Loading Dataset into Google Collaboration using different way"/>
+<meta name="twitter:description" content="Google collab provides an ubiquitous platform for all of us, with different hardware selection (CPU, GPU and TPU) band 12 GB of RAM (25 GB if your session crashes. I sometimes willingly crash the collab with some sample of code so that I will get 25 GB of ram for that particular session). At least in the case of training any model, I, personally prefer google collab to build and train my model."/>
+
+
+
+    <meta property="og:title" content="Loading Dataset into Google Collaboration using different way" />
+<meta property="og:description" content="Google collab provides an ubiquitous platform for all of us, with different hardware selection (CPU, GPU and TPU) band 12 GB of RAM (25 GB if your session crashes. I sometimes willingly crash the collab with some sample of code so that I will get 25 GB of ram for that particular session). At least in the case of training any model, I, personally prefer google collab to build and train my model." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sarmilaupadhyaya.github.io/posts/2019/11/loading-dataset-into-google-collaboration-using-different-way/" />
+<meta property="og:image" content="https://sarmilaupadhyaya.github.io/"/>
+<meta property="article:published_time" content="2019-11-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-11-06T00:00:00+00:00" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2019-11-06 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://sarmilaupadhyaya.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ cd /home/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://sarmilaupadhyaya.github.io/about/">About</a></li><li><a href="https://sarmilaupadhyaya.github.io/posts/">Posts</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>3 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="https://sarmilaupadhyaya.github.io/posts/2019/11/loading-dataset-into-google-collaboration-using-different-way/">Loading Dataset into Google Collaboration using different way</a>
+            </h1>
+
+            
+                <img src="https://sarmilaupadhyaya.github.io/assets/images/collab.png" class="post-cover" />
+            
+
+            <div class="post-content">
+                <p>Google collab provides an ubiquitous platform for all of us, with different hardware selection (CPU, GPU and TPU) band 12 GB of RAM (25 GB if your session crashes. I sometimes willingly crash the collab with some sample of code so that I will get 25 GB of ram for that particular session). At least in the case of training any model, I, personally prefer google collab to build and train my model. Only thing I found a little glitch in was loading your file to collab. These files will be uploaded for single session only. There are various ways to load your file (dataset). Three ways are described below.</p>
+<p><strong># A. From GitHub (allows only &lt; 25MB of file)</strong></p>
+<p>This must be the easiest way to get file from github. Sometimes you may be working with dataset available in github. Then, you can follow following steps.</p>
+<p>Lets see how we can read files like json, pandas, html as pandas dataframe.</p>
+<p><strong>For pandas lower than version 0.19.0</strong></p>
+<ul>
+<li>First go to the Dataset available in repository in github and click on raw file button on top left corner.</li>
+<li>Then, copy the raw file link.</li>
+<li>From pandas 0.19.2 and above you can directly pass url of csv/json/html into read_csv/read_json/read_html module and read the dataset as pandas dataframe.</li>
+</ul>
+<p><strong>For pandas less than version 19.02, we can follow following way</strong></p>
+<p><strong>Reading CSV</strong></p>
+<pre><code>url=&quot;url&quot;
+s=requests.get(url).content
+c=pd.read_csv(io.StringIO(s.decode('utf-8')))
+</code></pre><p><strong>Reading json</strong></p>
+<pre><code>url=&quot;url_for_json&quot;
+s=requests.get(url).content
+c=pd.read_csv(s)
+</code></pre><p>If you want to read files alternate way could be to download file and read the file then.</p>
+<pre><code>!wget &lt;url&gt;
+</code></pre><p>And then read the files as per your requirements.</p>
+<p><strong># B. From a local drive</strong></p>
+<p>If you want to upload files to collab session from your local drive then follow following procedure.</p>
+<pre><code>from google.colab import files
+uploaded = files.upload()
+
+</code></pre><p>This code will direct you towards a <strong>choose file</strong> windows and you can browse the file to be uploaded. After uploading file, you can list out your collab files with command:</p>
+<pre><code> !ls
+</code></pre><p>Now, read file as per your requirements.</p>
+<p>if its csv file, read using pandas, as mentioned above.</p>
+<p><strong># C. Reading From Pydrive</strong></p>
+<p><strong>Method I</strong></p>
+<p>This method requires you to get shareable link of your file. First, got to your file in drive and get  link which will look like this:</p>
+<pre><code>https://drive.google.com/open?id=&lt;id&gt;
+</code></pre><p>Now get the id from above url and put it in the following curl command.</p>
+<pre><code>!curl -c ./cookie -s -L &quot;https://drive.google.com/uc?export=download&amp;id=&lt;id&gt;&quot; &gt; /dev/null
+!curl -Lb ./cookie &quot;https://drive.google.com/uc?export=download&amp;confirm=`awk '/download/ {print $NF}' ./cookie`&amp;id=&lt;id&gt;&quot; -o &lt;&gt;filename&gt;
+</code></pre><p>This will download the file from drive to your collab.</p>
+<p><strong>Method II</strong></p>
+<p>This has a bit lengthy procedure to be followed. However</p>
+<ul>
+<li>To read files from drive to collab, first  install pydrive.</li>
+</ul>
+<pre><code>!pip install -U -q PyDrive
+</code></pre><p>PyDrive is a wrapper library of google-api-python-client that simplifies many common Google Drive API tasks.</p>
+<ul>
+<li>Next, import some of the packages required.</li>
+</ul>
+<pre><code>from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+from google.colab import auth
+from oauth2client.client import GoogleCredentials
+
+</code></pre><ul>
+<li>Now authenticate user and create google drive client.</li>
+</ul>
+<pre><code>auth.authenticate_user()
+
+</code></pre><p>This code will prompt towards the link that google use to authenticate user to use the drive. It will ask if google cloud sdk could access google account which click okay and a verification code will be provided, which you should copy and paste under the input box shown in the prompt.</p>
+<pre><code>gauth = GoogleAuth()
+gauth.credentials = GoogleCredentials.get_application_default()
+drive = GoogleDrive(gauth)
+
+</code></pre><ul>
+<li>
+<p>Now, got to the file you want to upload and get shareable link. Link will contain a param called id, get the id.</p>
+</li>
+<li>
+<p>Finally, to get file from drive.</p>
+</li>
+</ul>
+<pre><code>downloaded = drive.CreateFile({'id':id})
+downloaded.GetContentFile('Filename.csv') 
+
+</code></pre><ul>
+<li>At this point if you list out files in your collab session &ldquo;!ls&rdquo; , you can see your file.</li>
+<li>Now, read the file as per your file type or if its json, html, csv or any other format pandas will read directly, do it.</li>
+</ul>
+<h2 id="references">References</h2>
+<p>[1] <a href="https://towardsdatascience.com/3-ways-to-load-csv-files-into-colab-7c14fcbdcb92">https://towardsdatascience.com/3-ways-to-load-csv-files-into-colab-7c14fcbdcb92</a></p>
+<p>[2] <a href="https://pythonhosted.org/PyDrive/">https://pythonhosted.org/PyDrive/</a></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://sarmilaupadhyaya.github.io/tags/python">python</a></span><span class="tag"><a href="https://sarmilaupadhyaya.github.io/tags/google-drive">google drive</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>638 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-11-06 05:45 &#43;0545</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h"></span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+
+                    
+                        <span class="button next">
+                            <a href="https://sarmilaupadhyaya.github.io/posts/2019/10/building-chatbot-using-rasa-nlu.-part-i/">
+                                <span class="button__text">Building Chatbot using RASA NLU. Part I</span>
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://sarmilaupadhyaya.github.io/">Jane Doe</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://sarmilaupadhyaya.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://sarmilaupadhyaya.github.io/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

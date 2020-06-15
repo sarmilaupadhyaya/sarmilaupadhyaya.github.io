@@ -1,0 +1,316 @@
+---
+layout: post
+current: post
+title:  Building Chatbot using RASA NLU. Part I
+cover:  assets/images/rasa-nlu.png
+date:   2019-10-31
+tags: [python, nlp, chatbot, rasa]
+class: post-template
+subclass: 'post tag-python-chatbot-rasa'
+author: sharmila
+---
+
+In this tutorial, we will be setting up RASA and making a simple chatbot with it. This chatbot will answer the questions about snacks and acknowledge the user's response. It will be the simplest chatbot ever. This is part one of the rasa series. We will be covering the installation and simple usage of RASA only.
+
+What is RASA?
+
+It is an open-source machine learning framework to create virtual assistants/chatbots. It uses NLP pipelines and architecture for a chatbot and provides excellent flow. Rasa requires you to have basic knowledge about the pipelines of NLP and chatbots. Without delay, I'll jump directly into the setup.
+
+
+### Step 1:
+
+* Create a virtual environment (Highly recommended) 
+	
+```
+virtualenv <name_of_virtual env> --python=/usr/bin/python3
+
+```
+
+* Activate the created virtual Environment.
+
+```
+source <path to virtual environment folder>/bin/activate
+
+```
+
+* Install Rasa-X package
+
+```
+pip3 install rasa-x --extra-index-url https://pypi.rasa.com/simple
+
+```
+
+* After successful installation, init the rasa project. This will setup the architecture of rasa project.
+
+```
+rasa init --no-prompt
+
+```
+
+--no-prompt command will let you initialize with the default value. Otherwise, you will be asked a question about the setup.
+
+* You have successfully created the project. Now list out all the folders in the directory you are in. Next, we will try to look at what these files and folder hold and how might they be used by RASA.
+
+* Another interesting thing is you can try out the initiated project first, which will give you some insight.
+
+```
+rasa train & rasa shell
+
+```
+
+This will prompt you towards a chat with the bot. Initiate the conversation. It will be much easier for us to see the default code and figure out our way through rasa now.
+
+
+
+### Step 2:
+
+Lets, try and know what files in rasa are used for.
+
+* First is #__init__ file.
+ As said in RASA documentation, it helps python find your action.
+
+* ### actions.py
+ Action means the response bot gives to the user, or action that should be carried out before giving answer to user's request. There are different types of actions in RASA, out of which custom action is the one where one can turn on the lights, add an event to a calendar, check a user’s bank balance, or anything else you can imagine. We will further discuss about actions later. For now, actions file is for custom actions.
+
+* ### credentials.yml 
+ This file contains credentials or configuration for chat or voice platform. Defines the URL through which response is uttered and response is sent back to. For example: IT could be slack, messenger , matter most or smile web app. I will try to add a snippet of code and steps to integrate your bot to the mattermost at the end of this tutorial. 
+
+* ### config.py
+ This file includes policies, pipelines, dependencies required for different Rasa tasks.
+
+* ### domains.py
+ This file contains all domains. For example from intent, actions, templates. 
+
+* ### endpoints.py
+ This file contains different end point bot may use. One common example can be url which custom action is running on. We will elaborate later.
+
+* ### models/.. 
+ Contains your custom model.
+
+* ### data/stories.md
+ This file contains the flow of the conversation as stories. As you can see in file. Normal conversation is listed as sad , happy flow of conversation.
+
+* ### data/nlu.md
+  This file contains intent and its sample training data. NLU model in the rasa can easily train itself to learn these data and can predict intent of the text.
+
+
+We will slowly get into each of these files throughout the whole series.
+
+### Step 3: 
+
+* Now let's delve into a more practical approach. We will try and add some intent and responses to create a simple bot that asks the user if they want to have a snack today. For anyone not familiar with the basics of the chatbot. Let me clear up a few things first.
+The intent, short for intention, is the keyword or class we assign to the user's request. The basic architecture of chatbot follows classifying the user's response to an intention. For example:
+
+I have intents: ask_weather, ask_name, greet.
+
+If the user is telling bot: "what is the weather like today? or how sunny is it today?", then this request of the user has ask_weather intent. Using this intent we further process and generate a response to answer.
+
+Let's Continue and follow the points below:
+	
+* Let's modify the NLU part of RASA. 
+
+* First and foremost, edit intents. Go to data/nlu.md ab=nd add the snack_ask intent which represents user's request related to snack queries. Question mentioned below are training data for this intent.
+
+```
+## intent: snack_ask
+- what is todays snack
+- what are they cooking for snack
+- is todays snack tasty
+
+```
+
+The next intent will be to know if the user wants to have a snack or not.
+```
+## intent: snack_affirm
+- I am hungry and want to have snack.
+- Yes, I want to have snack.
+- No, I am not feeling like it.
+- I am eating outside. So, No.
+- Yes, I will be having snack.
+
+``` 
+
+```
+## intent: snack_deny
+
+- No I will not have snack. I am eating outside.
+- No I dont want to have snack
+
+
+```
+
+```
+
+## intent: polite
+- you too.
+- thank you take care
+- ok
+
+
+## intent: not_polite
+- you are not good.
+- you are dumb
+
+```
+
+* Now, we add stories to control flow of information.
+In stories we need to add the intent detected and action bot is going to do to reply.
+
+### Note 
+
+So, Our flow, for now, will be that the user asks the bot about snacks and we will tell him/her what snack is on the menu today and ask if they want to have it. If yes, we will record it. If no, we will record it too but as a denial. In the later chapters, we can even connect the database and make custom actions. But for now, let's keep things simple. Also, we are adding these things inside default stories available in the rasa project when initiated. If you want to remove stories then you can do it. But we are keeping the greeting part. To remove it, remove things in data/nlu.md, data/stories.md and domain.yml file.
+
+Finally, go to data/stories.md and add these stories.
+```
+## snack response positive
+
+* snack_ask
+  - utter_snack
+* snack_affirm
+  - utter_enjoy_snack
+* polite
+  - utter_goodbye
+
+
+## snack response positive
+
+* snack_ask
+  - utter_snack
+* snack_affirm
+  - utter_enjoy_snack
+* not_polite
+  - utter_goodbye
+
+
+## snack response negative
+
+* snack_ask
+  - utter_snack
+* snack_deny
+  - utter_have_good_day
+* polite
+  - utter_goodbye
+
+
+
+## snack response negative
+
+* snack_ask
+  - utter_snack
+* snack_deny
+  - utter_have_good_day
+* not_polite
+  - utter_goodbye
+
+
+```
+
+
+* Finally, for a simple bot we need to add utter action which is added in domain.yml file. We will add intents and templates as well. Utter action simply contains the appropriate single response to the intent of the user.
+
+  Add following in templates:
+
+```
+utter_snack:
+	- text: "Todays snack is choila chiura. DO you want to have it"
+
+utter_enjoy_snack:
+	- text: "Yeah! I have heard they are adding some spices today. Enjoy!"
+
+```
+
+add following in actions.
+
+```
+actions:
+- utter_snack
+- utter_enjoy_snack
+- utter_have_good_day
+```
+
+add above added intents in intent section of domain file:
+
+```
+intent:
+- snack_ask
+- snack_affirm
+- snack_deny
+- polite
+- not_polite
+
+```
+* So, lets train the bot now.
+
+```
+rasa train
+
+```
+
+* After training, now we check it in console
+
+```
+rasa shell
+
+```
+
+Some results:
+
+  
+  
+![title](assets/images/screenshot_1.png)
+
+
+
+This is the simple bot we created with the above steps. In the next series, we will be looking into different types of actions and other features of rasa. We can make this bot more realistic and better.
+
+**References**
+
+[https://rasa.com/docs/rasa/user-guide/rasa-tutorial/](https://rasa.com/docs/rasa/user-guide/rasa-tutorial/)
+
+
+**Appendix I**
+
+**Connection to matter most bot**
+
+I am simply going to list out steps you need to follow to integrate the bot to mattermost channel:
+
+1. Go to mattermost (assuming you already have an account. If not please set it up) and create outgoing webhook. 
+
+Outgoing Webhook, what for?
+Because Mattermost webhook instantly let you communicate with external applications.
+
+While setting up webhook, select the content type as application/json. Also, the callback url should be like: https://your_ip/webhooks/mattermost/webhook
+
+
+2. After setting up webhook. Go to your project and add credentials for mattermost.
+ add following set of code in yml format to credential.yml file
+ 
+ ```
+  mattermost:
+      url: "https://your_mattermost_url/api/v4"
+      team: "team-id" (go to channel in mattermost and view info of cahnnel which will show   channel id )
+      user: "username"
+      pw: "password"
+      webhook_url: "https://your_ip/webhooks/mattermost/webhook"
+   
+  ```
+ 
+ 3. Go to the endpoints.yml file and add: 
+ 
+```
+ action_endpoint:
+     url: "https://localhost:5005/webhooks/mattermost/webhook"
+ 
+```
+
+4. Make sure the mattermost developer section has your ip in Allow untrusted internal connections section. For that go to system console in mattermost and then to developer option.
+5. Finally, run the rasa in localhost.
+
+```
+rasa run
+
+```
+
+Now, you are good to go. Go to the channel and test the bot.
+
+Github Link: [https://github.com/sarmilaupadhyaya/chatbot-using-rasa](https://github.com/sarmilaupadhyaya/chatbot-using-rasa)

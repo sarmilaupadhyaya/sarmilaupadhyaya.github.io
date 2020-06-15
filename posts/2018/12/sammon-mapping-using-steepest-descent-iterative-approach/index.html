@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="sharmila">
+<meta name="description" content="Sammon mapping (SM), an algorithm for dimensionality reduction, follows non-linear projection based mapping of N-dimensional data to a lower dimension.
+Why projecting?
+Projection is one of the major step used during visualization and data analysis. We can easily picture data in 2D as well as 3D but anything higher than these dimensions, it is difficult for us to visualize. In such a case, we need to project whole datasets to a lower dimension (i." />
+<meta name="keywords" content=", Machine Learning, Dimension Reduction" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="#252627" />
+<link rel="canonical" href="https://sarmilaupadhyaya.github.io/posts/2018/12/sammon-mapping-using-steepest-descent-iterative-approach/" />
+
+
+    <title>
+        
+            Sammon Mapping Using Steepest-Descent Iterative Approach :: 🤓 Sharmila Upadhyaya 🤓  — Hello Friend NG Theme
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.1/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="https://sarmilaupadhyaya.github.io/main.dede02da9537a98158079c023e83573e18127834838ef08172acce888341a797.css">
+
+
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://sarmilaupadhyaya.github.io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://sarmilaupadhyaya.github.io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://sarmilaupadhyaya.github.io/favicon-16x16.png">
+    <link rel="manifest" href="https://sarmilaupadhyaya.github.io/site.webmanifest">
+    <link rel="mask-icon" href="https://sarmilaupadhyaya.github.io/safari-pinned-tab.svg" color="#252627">
+    <link rel="shortcut icon" href="https://sarmilaupadhyaya.github.io/favicon.ico">
+    <meta name="msapplication-TileColor" content="#252627">
+    <meta name="theme-color" content="#252627">
+
+
+
+<meta itemprop="name" content="Sammon Mapping Using Steepest-Descent Iterative Approach">
+<meta itemprop="description" content="Sammon mapping (SM), an algorithm for dimensionality reduction, follows non-linear projection based mapping of N-dimensional data to a lower dimension.
+Why projecting?
+Projection is one of the major step used during visualization and data analysis. We can easily picture data in 2D as well as 3D but anything higher than these dimensions, it is difficult for us to visualize. In such a case, we need to project whole datasets to a lower dimension (i.">
+<meta itemprop="datePublished" content="2018-12-06T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-12-06T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="691">
+<meta itemprop="image" content="https://sarmilaupadhyaya.github.io/"/>
+
+
+
+<meta itemprop="keywords" content="Machine Learning,Dimension Reduction," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://sarmilaupadhyaya.github.io/"/>
+
+<meta name="twitter:title" content="Sammon Mapping Using Steepest-Descent Iterative Approach"/>
+<meta name="twitter:description" content="Sammon mapping (SM), an algorithm for dimensionality reduction, follows non-linear projection based mapping of N-dimensional data to a lower dimension.
+Why projecting?
+Projection is one of the major step used during visualization and data analysis. We can easily picture data in 2D as well as 3D but anything higher than these dimensions, it is difficult for us to visualize. In such a case, we need to project whole datasets to a lower dimension (i."/>
+
+
+
+    <meta property="og:title" content="Sammon Mapping Using Steepest-Descent Iterative Approach" />
+<meta property="og:description" content="Sammon mapping (SM), an algorithm for dimensionality reduction, follows non-linear projection based mapping of N-dimensional data to a lower dimension.
+Why projecting?
+Projection is one of the major step used during visualization and data analysis. We can easily picture data in 2D as well as 3D but anything higher than these dimensions, it is difficult for us to visualize. In such a case, we need to project whole datasets to a lower dimension (i." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sarmilaupadhyaya.github.io/posts/2018/12/sammon-mapping-using-steepest-descent-iterative-approach/" />
+<meta property="og:image" content="https://sarmilaupadhyaya.github.io/"/>
+<meta property="article:published_time" content="2018-12-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2018-12-06T00:00:00+00:00" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2018-12-06 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="dark-theme">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="https://sarmilaupadhyaya.github.io/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">$ cd /home/</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="https://sarmilaupadhyaya.github.io/about/">About</a></li><li><a href="https://sarmilaupadhyaya.github.io/posts/">Posts</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>4 minutes
+
+            
+
+            </p>
+        </div>
+
+        <article>
+            <h1 class="post-title">
+                <a href="https://sarmilaupadhyaya.github.io/posts/2018/12/sammon-mapping-using-steepest-descent-iterative-approach/">Sammon Mapping Using Steepest-Descent Iterative Approach</a>
+            </h1>
+
+            
+                <img src="https://sarmilaupadhyaya.github.io/assets/images/1*49jIo5nb--OEmZWtJQAFwQ.jpeg" class="post-cover" />
+            
+
+            <div class="post-content">
+                <p>Sammon mapping (SM), an algorithm for dimensionality reduction, follows non-linear projection based mapping of N-dimensional data to a lower dimension.</p>
+<p>Why <em><strong>projecting</strong></em>?</p>
+<p>Projection is one of the major step used during visualization and data analysis. We can easily picture data in 2D as well as 3D but anything higher than these dimensions, it is difficult for us to visualize. In such a case, we need to project whole datasets to a lower dimension (i.e 2D or 3D) by preserving their properties in order to analyze them. Some linear projection algorithms are used frequently for such cases.</p>
+<p>We all have heard about PCA (<a href="https://en.wikipedia.org/wiki/Principal_component_analysis">Principal Component Analysis</a>), if not then, PCA follows static orthogonal projection to get linearly uncorrelated points in lesser dimension. However, there are certain limitations of PCA which can be eliminated using the SM algorithm. Although PCA maximizes the original variance present in the transformed dataset, yet it shows problem while projecting some structured regular pattern in a curved manifold.</p>
+<p>For example in figure 1, I tried to plot a bouquet of circles in 6d, each circle perpendicular to each other using PCA. As you can see, PCA overlaps each circle’s coordinate and converts it to a line. It didn’t preserve the structure of input datasets. As a result, we get:</p>
+<p><img src="assets/images/0*tftX9LyI5VtA6fMV" alt="">Fig 1. Projection of Bouquet of Circles passing through the origin, where each circle is perpendicular to each other, using PCA.</p>
+<p>So, Sammon mapping tries to eliminate such limitation.</p>
+<p>What it does is that it takes the result of PCA with maximum <a href="https://en.wikipedia.org/wiki/Variance">variance</a> and adds other features( what feature? explained later) to minimize the transformation of properties of data set. Subsequently, we have to remember a point that Sammon mapping does not give the complete solution but it rather tries to minimize the error and provides the optimal result.</p>
+<p><em>It tries to minimize the difference between the distance of data-points with each other in <strong><strong>transformed space</strong></strong> and <strong><strong>original space</strong></strong>. Hence, It preserves the structure of the datasets as a whole.</em></p>
+<p>The algorithm of Sammon mapping follows projecting datasets by using PCA and minimizing the projection error by backpropagating and changing transformed dataset.</p>
+<p><strong>Projection Error</strong></p>
+<p>The error is mainly defined as the difference between the overall distance between data-points on original space with transformed space. Here is the rough sketch of the algorithm in some mathematical structure:</p>
+<p>Let us assume that we have the dataset V with <em>’n’</em> numbers of data-points in <em>‘p’</em> dimension.</p>
+<p>So, <em>V</em> will be a matrix of dimension *n ** <em>p</em></p>
+<p>And,* V’* with ’n’ numbers of data-points in *‘q’ *dimension. Therefore, *V’* will be a matrix of dimension *n ** *q*</p>
+<p>We will now project data from <em>‘p’</em> dimension to ‘<em>q</em>’ dimension.</p>
+<p>Projection Error is given as :</p>
+<p><img src="assets/images/1*7SaD3xbddgjr8g7ETsyxaw.png" alt=""><strong>Projection Error Minimization</strong></p>
+<p>Error minimization can be done through the various process. Whereas, I have tried the Gradient Descent iterative approach.</p>
+<p>Which goes like:</p>
+<ol>
+<li>Calculate Error</li>
+</ol>
+<p>1.1 Loop while error_old — error &gt;threshold</p>
+<p>2 For each data point, V</p>
+<p>2.1 Calculate the first difference of error w.r.t a data point</p>
+<p>2.2 Calculate the second differentiation of error <em>w.r.t</em> a data point</p>
+<p>2.3 Calculate the delta given by,* delta = (first/second) * Magic Factor,*</p>
+<p><strong>Magic Factor</strong> can be either 0.3 or 0.4. This value is determined empirically. It controls how much a vector is adjusted with respect to error. It improves the convergence since we are taking the small step downwards.</p>
+<p>2.<em>4 V = V — delta</em></p>
+<p>2.5 Update the error calculated</p>
+<p>The formula for first differentiation with respect to a data point <em>Vjp</em> is :</p>
+<p><img src="assets/images/0*uB985DN2gZeLmHab" alt="">The formula for second differentiation with respect to a data point <em>Vjp</em> is :</p>
+<p><img src="//0*KAY5GpWXSG9lurAr" alt="">where <em>dij</em> = Euclidean distance between two data-point Vi and Vj in original space.</p>
+<p><em>d’ij</em> = Euclidean distance between two data-point <em>V’i</em> and* V’j* in reduced space.</p>
+<p>After few iterations, Sammon Mapping algorithm will give the reduced vector.</p>
+<p>The result is shown below:</p>
+<p><img src="assets/images/0*wwFo8nd6lL0PnydC" alt="">Fig 2: Projection of Bouquet of Circles passing through the origin, where each circle is perpendicular to each other using Sammon Mapping.Here’s the <strong>GitHub link</strong> of the code I implemented and the datasets for Bouquet of Circle.</p>
+<p><a href="https://github.com/sarmilaupadhyaya/Sammon_Mapping-python3">https://github.com/sarmilaupadhyaya/Sammon_Mapping-python3</a></p>
+<p><strong>References</strong></p>
+<p>[1]<a href="https://ieeexplore.ieee.org/document/1671271/references#references">https://ieeexplore.ieee.org/document/1671271/references#references</a></p>
+<p>[2] <a href="http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/AV0910">http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/AV0910</a></p>
+<p><a href="http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/AV0910">/henderson.pdf</a></p>
+<p>[3]<a href="https://en.wikipedia.org/wiki/Sammon_mapping">https://en.wikipedia.org/wiki/Sammon_mapping</a></p>
+<p>[4]<a href="https://www.codeproject.com/Articles/43123/Sammon-Projection">https://www.codeproject.com/Articles/43123/Sammon-Projection</a></p>
+
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://sarmilaupadhyaya.github.io/tags/machine-learning">Machine Learning</a></span><span class="tag"><a href="https://sarmilaupadhyaya.github.io/tags/dimension-reduction">Dimension Reduction</a></span>
+                </p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>691 Words</p>
+
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2018-12-06 05:45 &#43;0545</p>
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h"></span>
+                    <hr />
+                </div>
+
+                <div class="pagination__buttons">
+                    
+                        <span class="button previous">
+                            <a href="https://sarmilaupadhyaya.github.io/posts/2019/09/loading-glove-pre-trained-word-embedding-model-from-text-file-faster/">
+                                <span class="button__icon">←</span>
+                                <span class="button__text">Loading Glove Pre-trained Word Embedding Model from Text File [Faster]</span>
+                            </a>
+                        </span>
+                    
+
+                    
+                </div>
+            </div>
+        
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>&copy; 2020</span>
+            
+                <span><a href="https://sarmilaupadhyaya.github.io/">Jane Doe</a></span>
+            
+            
+                <span><a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+            
+            <span> <a href="https://sarmilaupadhyaya.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a></span>
+        </div>
+    </div>
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+            <span>Made with &#10084; by <a href="https://github.com/rhazdon">Djordje Atlialp</a></span>
+        </div>
+    </div>
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="https://sarmilaupadhyaya.github.io/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>

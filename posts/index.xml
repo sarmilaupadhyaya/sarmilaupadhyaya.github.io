@@ -1,0 +1,479 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on 🤓 Sharmila Upadhyaya 🤓</title>
+        <link>https://sarmilaupadhyaya.github.io/posts/</link>
+        <description>Recent content in Posts on 🤓 Sharmila Upadhyaya 🤓</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Wed, 06 Nov 2019 00:00:00 +0000</lastBuildDate>
+        <atom:link href="https://sarmilaupadhyaya.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>Loading Dataset into Google Collaboration using different way</title>
+            <link>https://sarmilaupadhyaya.github.io/posts/2019/11/loading-dataset-into-google-collaboration-using-different-way/</link>
+            <pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate>
+            
+            <guid>https://sarmilaupadhyaya.github.io/posts/2019/11/loading-dataset-into-google-collaboration-using-different-way/</guid>
+            <description>Google collab provides an ubiquitous platform for all of us, with different hardware selection (CPU, GPU and TPU) band 12 GB of RAM (25 GB if your session crashes. I sometimes willingly crash the collab with some sample of code so that I will get 25 GB of ram for that particular session). At least in the case of training any model, I, personally prefer google collab to build and train my model.</description>
+            <content type="html"><![CDATA[<p>Google collab provides an ubiquitous platform for all of us, with different hardware selection (CPU, GPU and TPU) band 12 GB of RAM (25 GB if your session crashes. I sometimes willingly crash the collab with some sample of code so that I will get 25 GB of ram for that particular session). At least in the case of training any model, I, personally prefer google collab to build and train my model. Only thing I found a little glitch in was loading your file to collab. These files will be uploaded for single session only. There are various ways to load your file (dataset). Three ways are described below.</p>
+<p><strong># A. From GitHub (allows only &lt; 25MB of file)</strong></p>
+<p>This must be the easiest way to get file from github. Sometimes you may be working with dataset available in github. Then, you can follow following steps.</p>
+<p>Lets see how we can read files like json, pandas, html as pandas dataframe.</p>
+<p><strong>For pandas lower than version 0.19.0</strong></p>
+<ul>
+<li>First go to the Dataset available in repository in github and click on raw file button on top left corner.</li>
+<li>Then, copy the raw file link.</li>
+<li>From pandas 0.19.2 and above you can directly pass url of csv/json/html into read_csv/read_json/read_html module and read the dataset as pandas dataframe.</li>
+</ul>
+<p><strong>For pandas less than version 19.02, we can follow following way</strong></p>
+<p><strong>Reading CSV</strong></p>
+<pre><code>url=&quot;url&quot;
+s=requests.get(url).content
+c=pd.read_csv(io.StringIO(s.decode('utf-8')))
+</code></pre><p><strong>Reading json</strong></p>
+<pre><code>url=&quot;url_for_json&quot;
+s=requests.get(url).content
+c=pd.read_csv(s)
+</code></pre><p>If you want to read files alternate way could be to download file and read the file then.</p>
+<pre><code>!wget &lt;url&gt;
+</code></pre><p>And then read the files as per your requirements.</p>
+<p><strong># B. From a local drive</strong></p>
+<p>If you want to upload files to collab session from your local drive then follow following procedure.</p>
+<pre><code>from google.colab import files
+uploaded = files.upload()
+
+</code></pre><p>This code will direct you towards a <strong>choose file</strong> windows and you can browse the file to be uploaded. After uploading file, you can list out your collab files with command:</p>
+<pre><code> !ls
+</code></pre><p>Now, read file as per your requirements.</p>
+<p>if its csv file, read using pandas, as mentioned above.</p>
+<p><strong># C. Reading From Pydrive</strong></p>
+<p><strong>Method I</strong></p>
+<p>This method requires you to get shareable link of your file. First, got to your file in drive and get  link which will look like this:</p>
+<pre><code>https://drive.google.com/open?id=&lt;id&gt;
+</code></pre><p>Now get the id from above url and put it in the following curl command.</p>
+<pre><code>!curl -c ./cookie -s -L &quot;https://drive.google.com/uc?export=download&amp;id=&lt;id&gt;&quot; &gt; /dev/null
+!curl -Lb ./cookie &quot;https://drive.google.com/uc?export=download&amp;confirm=`awk '/download/ {print $NF}' ./cookie`&amp;id=&lt;id&gt;&quot; -o &lt;&gt;filename&gt;
+</code></pre><p>This will download the file from drive to your collab.</p>
+<p><strong>Method II</strong></p>
+<p>This has a bit lengthy procedure to be followed. However</p>
+<ul>
+<li>To read files from drive to collab, first  install pydrive.</li>
+</ul>
+<pre><code>!pip install -U -q PyDrive
+</code></pre><p>PyDrive is a wrapper library of google-api-python-client that simplifies many common Google Drive API tasks.</p>
+<ul>
+<li>Next, import some of the packages required.</li>
+</ul>
+<pre><code>from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+from google.colab import auth
+from oauth2client.client import GoogleCredentials
+
+</code></pre><ul>
+<li>Now authenticate user and create google drive client.</li>
+</ul>
+<pre><code>auth.authenticate_user()
+
+</code></pre><p>This code will prompt towards the link that google use to authenticate user to use the drive. It will ask if google cloud sdk could access google account which click okay and a verification code will be provided, which you should copy and paste under the input box shown in the prompt.</p>
+<pre><code>gauth = GoogleAuth()
+gauth.credentials = GoogleCredentials.get_application_default()
+drive = GoogleDrive(gauth)
+
+</code></pre><ul>
+<li>
+<p>Now, got to the file you want to upload and get shareable link. Link will contain a param called id, get the id.</p>
+</li>
+<li>
+<p>Finally, to get file from drive.</p>
+</li>
+</ul>
+<pre><code>downloaded = drive.CreateFile({'id':id})
+downloaded.GetContentFile('Filename.csv') 
+
+</code></pre><ul>
+<li>At this point if you list out files in your collab session &ldquo;!ls&rdquo; , you can see your file.</li>
+<li>Now, read the file as per your file type or if its json, html, csv or any other format pandas will read directly, do it.</li>
+</ul>
+<h2 id="references">References</h2>
+<p>[1] <a href="https://towardsdatascience.com/3-ways-to-load-csv-files-into-colab-7c14fcbdcb92">https://towardsdatascience.com/3-ways-to-load-csv-files-into-colab-7c14fcbdcb92</a></p>
+<p>[2] <a href="https://pythonhosted.org/PyDrive/">https://pythonhosted.org/PyDrive/</a></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Building Chatbot using RASA NLU. Part I</title>
+            <link>https://sarmilaupadhyaya.github.io/posts/2019/10/building-chatbot-using-rasa-nlu.-part-i/</link>
+            <pubDate>Thu, 31 Oct 2019 00:00:00 +0000</pubDate>
+            
+            <guid>https://sarmilaupadhyaya.github.io/posts/2019/10/building-chatbot-using-rasa-nlu.-part-i/</guid>
+            <description>In this tutorial, we will be setting up RASA and making a simple chatbot with it. This chatbot will answer the questions about snacks and acknowledge the user&amp;rsquo;s response. It will be the simplest chatbot ever. This is part one of the rasa series. We will be covering the installation and simple usage of RASA only.
+What is RASA?
+It is an open-source machine learning framework to create virtual assistants/chatbots. It uses NLP pipelines and architecture for a chatbot and provides excellent flow.</description>
+            <content type="html"><![CDATA[<p>In this tutorial, we will be setting up RASA and making a simple chatbot with it. This chatbot will answer the questions about snacks and acknowledge the user&rsquo;s response. It will be the simplest chatbot ever. This is part one of the rasa series. We will be covering the installation and simple usage of RASA only.</p>
+<p>What is RASA?</p>
+<p>It is an open-source machine learning framework to create virtual assistants/chatbots. It uses NLP pipelines and architecture for a chatbot and provides excellent flow. Rasa requires you to have basic knowledge about the pipelines of NLP and chatbots. Without delay, I&rsquo;ll jump directly into the setup.</p>
+<h3 id="step-1">Step 1:</h3>
+<ul>
+<li>Create a virtual environment (Highly recommended)</li>
+</ul>
+<pre><code>virtualenv &lt;name_of_virtual env&gt; --python=/usr/bin/python3
+
+</code></pre><ul>
+<li>Activate the created virtual Environment.</li>
+</ul>
+<pre><code>source &lt;path to virtual environment folder&gt;/bin/activate
+
+</code></pre><ul>
+<li>Install Rasa-X package</li>
+</ul>
+<pre><code>pip3 install rasa-x --extra-index-url https://pypi.rasa.com/simple
+
+</code></pre><ul>
+<li>After successful installation, init the rasa project. This will setup the architecture of rasa project.</li>
+</ul>
+<pre><code>rasa init --no-prompt
+
+</code></pre><p>&ndash;no-prompt command will let you initialize with the default value. Otherwise, you will be asked a question about the setup.</p>
+<ul>
+<li>
+<p>You have successfully created the project. Now list out all the folders in the directory you are in. Next, we will try to look at what these files and folder hold and how might they be used by RASA.</p>
+</li>
+<li>
+<p>Another interesting thing is you can try out the initiated project first, which will give you some insight.</p>
+</li>
+</ul>
+<pre><code>rasa train &amp; rasa shell
+
+</code></pre><p>This will prompt you towards a chat with the bot. Initiate the conversation. It will be much easier for us to see the default code and figure out our way through rasa now.</p>
+<h3 id="step-2">Step 2:</h3>
+<p>Lets, try and know what files in rasa are used for.</p>
+<ul>
+<li>
+<p>First is #<strong>init</strong> file.
+As said in RASA documentation, it helps python find your action.</p>
+</li>
+<li>
+<h3 id="actionspy">actions.py</h3>
+</li>
+</ul>
+<p>Action means the response bot gives to the user, or action that should be carried out before giving answer to user&rsquo;s request. There are different types of actions in RASA, out of which custom action is the one where one can turn on the lights, add an event to a calendar, check a user’s bank balance, or anything else you can imagine. We will further discuss about actions later. For now, actions file is for custom actions.</p>
+<ul>
+<li>
+<h3 id="credentialsyml">credentials.yml</h3>
+</li>
+</ul>
+<p>This file contains credentials or configuration for chat or voice platform. Defines the URL through which response is uttered and response is sent back to. For example: IT could be slack, messenger , matter most or smile web app. I will try to add a snippet of code and steps to integrate your bot to the mattermost at the end of this tutorial.</p>
+<ul>
+<li>
+<h3 id="configpy">config.py</h3>
+</li>
+</ul>
+<p>This file includes policies, pipelines, dependencies required for different Rasa tasks.</p>
+<ul>
+<li>
+<h3 id="domainspy">domains.py</h3>
+</li>
+</ul>
+<p>This file contains all domains. For example from intent, actions, templates.</p>
+<ul>
+<li>
+<h3 id="endpointspy">endpoints.py</h3>
+</li>
+</ul>
+<p>This file contains different end point bot may use. One common example can be url which custom action is running on. We will elaborate later.</p>
+<ul>
+<li>
+<h3 id="models">models/..</h3>
+</li>
+</ul>
+<p>Contains your custom model.</p>
+<ul>
+<li>
+<h3 id="datastoriesmd">data/stories.md</h3>
+</li>
+</ul>
+<p>This file contains the flow of the conversation as stories. As you can see in file. Normal conversation is listed as sad , happy flow of conversation.</p>
+<ul>
+<li>
+<h3 id="datanlumd">data/nlu.md</h3>
+This file contains intent and its sample training data. NLU model in the rasa can easily train itself to learn these data and can predict intent of the text.</li>
+</ul>
+<p>We will slowly get into each of these files throughout the whole series.</p>
+<h3 id="step-3">Step 3:</h3>
+<ul>
+<li>Now let&rsquo;s delve into a more practical approach. We will try and add some intent and responses to create a simple bot that asks the user if they want to have a snack today. For anyone not familiar with the basics of the chatbot. Let me clear up a few things first.
+The intent, short for intention, is the keyword or class we assign to the user&rsquo;s request. The basic architecture of chatbot follows classifying the user&rsquo;s response to an intention. For example:</li>
+</ul>
+<p>I have intents: ask_weather, ask_name, greet.</p>
+<p>If the user is telling bot: &ldquo;what is the weather like today? or how sunny is it today?&rdquo;, then this request of the user has ask_weather intent. Using this intent we further process and generate a response to answer.</p>
+<p>Let&rsquo;s Continue and follow the points below:</p>
+<ul>
+<li>
+<p>Let&rsquo;s modify the NLU part of RASA.</p>
+</li>
+<li>
+<p>First and foremost, edit intents. Go to data/nlu.md ab=nd add the snack_ask intent which represents user&rsquo;s request related to snack queries. Question mentioned below are training data for this intent.</p>
+</li>
+</ul>
+<pre><code>## intent: snack_ask
+- what is todays snack
+- what are they cooking for snack
+- is todays snack tasty
+
+</code></pre><p>The next intent will be to know if the user wants to have a snack or not.</p>
+<pre><code>## intent: snack_affirm
+- I am hungry and want to have snack.
+- Yes, I want to have snack.
+- No, I am not feeling like it.
+- I am eating outside. So, No.
+- Yes, I will be having snack.
+
+</code></pre><pre><code>## intent: snack_deny
+
+- No I will not have snack. I am eating outside.
+- No I dont want to have snack
+
+
+</code></pre><pre><code>
+## intent: polite
+- you too.
+- thank you take care
+- ok
+
+
+## intent: not_polite
+- you are not good.
+- you are dumb
+
+</code></pre><ul>
+<li>Now, we add stories to control flow of information.
+In stories we need to add the intent detected and action bot is going to do to reply.</li>
+</ul>
+<h3 id="note">Note</h3>
+<p>So, Our flow, for now, will be that the user asks the bot about snacks and we will tell him/her what snack is on the menu today and ask if they want to have it. If yes, we will record it. If no, we will record it too but as a denial. In the later chapters, we can even connect the database and make custom actions. But for now, let&rsquo;s keep things simple. Also, we are adding these things inside default stories available in the rasa project when initiated. If you want to remove stories then you can do it. But we are keeping the greeting part. To remove it, remove things in data/nlu.md, data/stories.md and domain.yml file.</p>
+<p>Finally, go to data/stories.md and add these stories.</p>
+<pre><code>## snack response positive
+
+* snack_ask
+  - utter_snack
+* snack_affirm
+  - utter_enjoy_snack
+* polite
+  - utter_goodbye
+
+
+## snack response positive
+
+* snack_ask
+  - utter_snack
+* snack_affirm
+  - utter_enjoy_snack
+* not_polite
+  - utter_goodbye
+
+
+## snack response negative
+
+* snack_ask
+  - utter_snack
+* snack_deny
+  - utter_have_good_day
+* polite
+  - utter_goodbye
+
+
+
+## snack response negative
+
+* snack_ask
+  - utter_snack
+* snack_deny
+  - utter_have_good_day
+* not_polite
+  - utter_goodbye
+
+
+</code></pre><ul>
+<li>
+<p>Finally, for a simple bot we need to add utter action which is added in domain.yml file. We will add intents and templates as well. Utter action simply contains the appropriate single response to the intent of the user.</p>
+<p>Add following in templates:</p>
+</li>
+</ul>
+<pre><code>utter_snack:
+	- text: &quot;Todays snack is choila chiura. DO you want to have it&quot;
+
+utter_enjoy_snack:
+	- text: &quot;Yeah! I have heard they are adding some spices today. Enjoy!&quot;
+
+</code></pre><p>add following in actions.</p>
+<pre><code>actions:
+- utter_snack
+- utter_enjoy_snack
+- utter_have_good_day
+</code></pre><p>add above added intents in intent section of domain file:</p>
+<pre><code>intent:
+- snack_ask
+- snack_affirm
+- snack_deny
+- polite
+- not_polite
+
+</code></pre><ul>
+<li>So, lets train the bot now.</li>
+</ul>
+<pre><code>rasa train
+
+</code></pre><ul>
+<li>After training, now we check it in console</li>
+</ul>
+<pre><code>rasa shell
+
+</code></pre><p>Some results:</p>
+<p><img src="assets/images/screenshot_1.png" alt="title"></p>
+<p>This is the simple bot we created with the above steps. In the next series, we will be looking into different types of actions and other features of rasa. We can make this bot more realistic and better.</p>
+<p><strong>References</strong></p>
+<p><a href="https://rasa.com/docs/rasa/user-guide/rasa-tutorial/">https://rasa.com/docs/rasa/user-guide/rasa-tutorial/</a></p>
+<p><strong>Appendix I</strong></p>
+<p><strong>Connection to matter most bot</strong></p>
+<p>I am simply going to list out steps you need to follow to integrate the bot to mattermost channel:</p>
+<ol>
+<li>Go to mattermost (assuming you already have an account. If not please set it up) and create outgoing webhook.</li>
+</ol>
+<p>Outgoing Webhook, what for?
+Because Mattermost webhook instantly let you communicate with external applications.</p>
+<p>While setting up webhook, select the content type as application/json. Also, the callback url should be like: https://your_ip/webhooks/mattermost/webhook</p>
+<ol start="2">
+<li>After setting up webhook. Go to your project and add credentials for mattermost.
+add following set of code in yml format to credential.yml file</li>
+</ol>
+<pre><code> mattermost:
+     url: &quot;https://your_mattermost_url/api/v4&quot;
+     team: &quot;team-id&quot; (go to channel in mattermost and view info of cahnnel which will show   channel id )
+     user: &quot;username&quot;
+     pw: &quot;password&quot;
+     webhook_url: &quot;https://your_ip/webhooks/mattermost/webhook&quot;
+  
+</code></pre><ol start="3">
+<li>Go to the endpoints.yml file and add:</li>
+</ol>
+<pre><code> action_endpoint:
+     url: &quot;https://localhost:5005/webhooks/mattermost/webhook&quot;
+ 
+</code></pre><ol start="4">
+<li>Make sure the mattermost developer section has your ip in Allow untrusted internal connections section. For that go to system console in mattermost and then to developer option.</li>
+<li>Finally, run the rasa in localhost.</li>
+</ol>
+<pre><code>rasa run
+
+</code></pre><p>Now, you are good to go. Go to the channel and test the bot.</p>
+<p>Github Link: <a href="https://github.com/sarmilaupadhyaya/chatbot-using-rasa">https://github.com/sarmilaupadhyaya/chatbot-using-rasa</a></p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Welcome to my blog</title>
+            <link>https://sarmilaupadhyaya.github.io/posts/2019/10/welcome-to-my-blog/</link>
+            <pubDate>Tue, 22 Oct 2019 17:00:00 +0000</pubDate>
+            
+            <guid>https://sarmilaupadhyaya.github.io/posts/2019/10/welcome-to-my-blog/</guid>
+            <description>Hey! Welcome to my blog. I am Sharmila Upadhyaya, an Natural Language Processing Engineer. I am enthusiast machine learning explorer and trying to fit in the tech world. Besides tech and all mind boggling amazing NLP problems, I find time to sing and write poems. I occassonally travel too and will try to include my experience here. :)</description>
+            <content type="html"><![CDATA[<p>Hey! Welcome to my blog. I am Sharmila Upadhyaya, an Natural Language Processing Engineer. I am enthusiast machine learning explorer and trying to fit in the tech world. Besides tech and all mind boggling
+amazing NLP problems, I find time to sing and write poems. I occassonally travel too and will try to include my experience here.  :)</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Loading Glove Pre-trained Word Embedding Model from Text File [Faster]</title>
+            <link>https://sarmilaupadhyaya.github.io/posts/2019/09/loading-glove-pre-trained-word-embedding-model-from-text-file-faster/</link>
+            <pubDate>Wed, 11 Sep 2019 00:00:00 +0000</pubDate>
+            
+            <guid>https://sarmilaupadhyaya.github.io/posts/2019/09/loading-glove-pre-trained-word-embedding-model-from-text-file-faster/</guid>
+            <description>With the evolution of transfer learning approaches in image processing, the field of Natural Language Processing has also a ubiquitous pre-trained model which is used for multiple states of the art transfer learning solutions for Text classification, Named Entity Recognition.
+And this pre-trained model is Word Embeddings. Word embedding is a vector representation of vocabulary which is trained following the concept “meaning of the word is carried by its correspondence” Excuse me if I have misphrased Ahem!</description>
+            <content type="html"><![CDATA[<p>With the evolution of transfer learning approaches in image processing, the field of Natural Language Processing has also a ubiquitous pre-trained model which is used for multiple states of the art transfer learning solutions for Text classification, Named Entity Recognition.</p>
+<p>And this pre-trained model is <em><strong>Word Embeddings</strong></em>. Word embedding is a vector representation of vocabulary which is trained following the concept “meaning of the word is carried by its correspondence” Excuse me if I have misphrased Ahem!</p>
+<p>[For further elaboration in the State of Transfer Learning in NLP, follow this link which I went through .]</p>
+<p>[Additionally, now if you want to know about word embeddings then follow the <a href="https://towardsdatascience.com/introduction-to-word-embedding-and-word2vec-652d0c2060fa">following link</a>.]</p>
+<p>Moving forward, we have available pre-trained models like glove, w2vec, fasttext which can be easily loaded and used. In this tutorial, I am just gonna cover how to load .txt file provided by glove in python as a model (which is a dictionary) and getting vector representation of words. These vector representations can be used in other models as input. Usually while loading a text file as a model what we do is, read it line by line and separate word from the vector and insert that word as a key and vector as the value in the dictionary. Well, this takes a long time to load. To optimize this time, what we can do is make two separate files for vocab and vector. Numpy saving array as npy (binary format) file is handy and fast to read as well. Hence, here we will split .txt file into .vocab and .npy file (vector file).</p>
+<p>**Step 1: **Download the desired pre-trained embedding file.</p>
+<p>Follow the link below and pre-trained word embedding provided by the glove. You can download glove pre-trained model<a href="https://nlp.stanford.edu/projects/glove/"> through this link</a>. I have downloaded 100 dimensions of embedding which was derived from 2B tweets, 27B tokens, 1.2M vocab. The vector length is 100 features.</p>
+<p><strong>Step 2:</strong> Now, load the text file into word embedding model in python. Following is the code snippet.
+{% gist 2c7c4427248fe89188d36cf6241c53f5%}
+<em>Use it as</em> : model = load_glove_model(“path/to/txt/file/also/exclude/extension of filename.”)</p>
+<p><strong>Alternative and Faster Way</strong></p>
+<p><strong>Step 1:</strong> Once you have a text file, then we will convert it to vocab and npy file.</p>
+<p>Now vocab file will have all the words while npy file will have their respective vectors. Consequently, Later they will be mapped. Now, let&rsquo;s see a snippet of code to convert .txt file to the required file.</p>
+<p>{% gist d9a80e4ed66a0e1648f48da13edc6406 %}</p>
+<p>Use it as: convert_to_binary(“path/to/txt/file/also/exclude/extension of filename.”)</p>
+<p>Taaadaa, your desired files are created.</p>
+<p>**Step 2: **load these files to get the model.
+{% gist 3fc9a979259df954c97a99a3ab4e822c %}
+load_embeddings_binary(“path/to/vocab and npy/file/also/exclude/extension of filename.”) Here, our filename of both files are same and extension will be different.</p>
+<p>**Step 3: **Get word vector representation. Now, when you pass a sentence, its gonna give a vector of dimension [number of words, dimension of vector]
+{% gist 4cb676f0a97346dd6fa3a43ec94409f1 %}
+<strong>Example:</strong> get_w2v(“This is demonstration”, model)</p>
+<p>You will get a numpy array of dimension 3 * 100, 3 being the number of tokens and 100 dimension of the feature vector.</p>
+<p>This is it! Thank you! Next Session I will be explaining loading embedding model using popular NLP library Gensim.</p>
+]]></content>
+        </item>
+        
+        <item>
+            <title>Sammon Mapping Using Steepest-Descent Iterative Approach</title>
+            <link>https://sarmilaupadhyaya.github.io/posts/2018/12/sammon-mapping-using-steepest-descent-iterative-approach/</link>
+            <pubDate>Thu, 06 Dec 2018 00:00:00 +0000</pubDate>
+            
+            <guid>https://sarmilaupadhyaya.github.io/posts/2018/12/sammon-mapping-using-steepest-descent-iterative-approach/</guid>
+            <description>Sammon mapping (SM), an algorithm for dimensionality reduction, follows non-linear projection based mapping of N-dimensional data to a lower dimension.
+Why projecting?
+Projection is one of the major step used during visualization and data analysis. We can easily picture data in 2D as well as 3D but anything higher than these dimensions, it is difficult for us to visualize. In such a case, we need to project whole datasets to a lower dimension (i.</description>
+            <content type="html"><![CDATA[<p>Sammon mapping (SM), an algorithm for dimensionality reduction, follows non-linear projection based mapping of N-dimensional data to a lower dimension.</p>
+<p>Why <em><strong>projecting</strong></em>?</p>
+<p>Projection is one of the major step used during visualization and data analysis. We can easily picture data in 2D as well as 3D but anything higher than these dimensions, it is difficult for us to visualize. In such a case, we need to project whole datasets to a lower dimension (i.e 2D or 3D) by preserving their properties in order to analyze them. Some linear projection algorithms are used frequently for such cases.</p>
+<p>We all have heard about PCA (<a href="https://en.wikipedia.org/wiki/Principal_component_analysis">Principal Component Analysis</a>), if not then, PCA follows static orthogonal projection to get linearly uncorrelated points in lesser dimension. However, there are certain limitations of PCA which can be eliminated using the SM algorithm. Although PCA maximizes the original variance present in the transformed dataset, yet it shows problem while projecting some structured regular pattern in a curved manifold.</p>
+<p>For example in figure 1, I tried to plot a bouquet of circles in 6d, each circle perpendicular to each other using PCA. As you can see, PCA overlaps each circle’s coordinate and converts it to a line. It didn’t preserve the structure of input datasets. As a result, we get:</p>
+<p><img src="assets/images/0*tftX9LyI5VtA6fMV" alt="">Fig 1. Projection of Bouquet of Circles passing through the origin, where each circle is perpendicular to each other, using PCA.</p>
+<p>So, Sammon mapping tries to eliminate such limitation.</p>
+<p>What it does is that it takes the result of PCA with maximum <a href="https://en.wikipedia.org/wiki/Variance">variance</a> and adds other features( what feature? explained later) to minimize the transformation of properties of data set. Subsequently, we have to remember a point that Sammon mapping does not give the complete solution but it rather tries to minimize the error and provides the optimal result.</p>
+<p><em>It tries to minimize the difference between the distance of data-points with each other in <strong><strong>transformed space</strong></strong> and <strong><strong>original space</strong></strong>. Hence, It preserves the structure of the datasets as a whole.</em></p>
+<p>The algorithm of Sammon mapping follows projecting datasets by using PCA and minimizing the projection error by backpropagating and changing transformed dataset.</p>
+<p><strong>Projection Error</strong></p>
+<p>The error is mainly defined as the difference between the overall distance between data-points on original space with transformed space. Here is the rough sketch of the algorithm in some mathematical structure:</p>
+<p>Let us assume that we have the dataset V with <em>’n’</em> numbers of data-points in <em>‘p’</em> dimension.</p>
+<p>So, <em>V</em> will be a matrix of dimension *n ** <em>p</em></p>
+<p>And,* V’* with ’n’ numbers of data-points in *‘q’ *dimension. Therefore, *V’* will be a matrix of dimension *n ** *q*</p>
+<p>We will now project data from <em>‘p’</em> dimension to ‘<em>q</em>’ dimension.</p>
+<p>Projection Error is given as :</p>
+<p><img src="assets/images/1*7SaD3xbddgjr8g7ETsyxaw.png" alt=""><strong>Projection Error Minimization</strong></p>
+<p>Error minimization can be done through the various process. Whereas, I have tried the Gradient Descent iterative approach.</p>
+<p>Which goes like:</p>
+<ol>
+<li>Calculate Error</li>
+</ol>
+<p>1.1 Loop while error_old — error &gt;threshold</p>
+<p>2 For each data point, V</p>
+<p>2.1 Calculate the first difference of error w.r.t a data point</p>
+<p>2.2 Calculate the second differentiation of error <em>w.r.t</em> a data point</p>
+<p>2.3 Calculate the delta given by,* delta = (first/second) * Magic Factor,*</p>
+<p><strong>Magic Factor</strong> can be either 0.3 or 0.4. This value is determined empirically. It controls how much a vector is adjusted with respect to error. It improves the convergence since we are taking the small step downwards.</p>
+<p>2.<em>4 V = V — delta</em></p>
+<p>2.5 Update the error calculated</p>
+<p>The formula for first differentiation with respect to a data point <em>Vjp</em> is :</p>
+<p><img src="assets/images/0*uB985DN2gZeLmHab" alt="">The formula for second differentiation with respect to a data point <em>Vjp</em> is :</p>
+<p><img src="//0*KAY5GpWXSG9lurAr" alt="">where <em>dij</em> = Euclidean distance between two data-point Vi and Vj in original space.</p>
+<p><em>d’ij</em> = Euclidean distance between two data-point <em>V’i</em> and* V’j* in reduced space.</p>
+<p>After few iterations, Sammon Mapping algorithm will give the reduced vector.</p>
+<p>The result is shown below:</p>
+<p><img src="assets/images/0*wwFo8nd6lL0PnydC" alt="">Fig 2: Projection of Bouquet of Circles passing through the origin, where each circle is perpendicular to each other using Sammon Mapping.Here’s the <strong>GitHub link</strong> of the code I implemented and the datasets for Bouquet of Circle.</p>
+<p><a href="https://github.com/sarmilaupadhyaya/Sammon_Mapping-python3">https://github.com/sarmilaupadhyaya/Sammon_Mapping-python3</a></p>
+<p><strong>References</strong></p>
+<p>[1]<a href="https://ieeexplore.ieee.org/document/1671271/references#references">https://ieeexplore.ieee.org/document/1671271/references#references</a></p>
+<p>[2] <a href="http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/AV0910">http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/AV0910</a></p>
+<p><a href="http://homepages.inf.ed.ac.uk/rbf/CVonline/LOCAL_COPIES/AV0910">/henderson.pdf</a></p>
+<p>[3]<a href="https://en.wikipedia.org/wiki/Sammon_mapping">https://en.wikipedia.org/wiki/Sammon_mapping</a></p>
+<p>[4]<a href="https://www.codeproject.com/Articles/43123/Sammon-Projection">https://www.codeproject.com/Articles/43123/Sammon-Projection</a></p>
+]]></content>
+        </item>
+        
+    </channel>
+</rss>

@@ -14,10 +14,10 @@
     
     <item>
       <title>Building Chatbot using RASA NLU. Part I</title>
-      <link>https://sarmilaupadhyaya.github.io/post/2019-10-31-tutorial-documentation/</link>
+      <link>https://sarmilaupadhyaya.github.io/posts/2019/10/building-chatbot-using-rasa-nlu.-part-i/</link>
       <pubDate>Thu, 31 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://sarmilaupadhyaya.github.io/post/2019-10-31-tutorial-documentation/</guid>
+      <guid>https://sarmilaupadhyaya.github.io/posts/2019/10/building-chatbot-using-rasa-nlu.-part-i/</guid>
       <description>In this tutorial, we will be setting up RASA and making a simple chatbot with it. This chatbot will answer the questions about snacks and acknowledge the user&amp;rsquo;s response. It will be the simplest chatbot ever. This is part one of the rasa series. We will be covering the installation and simple usage of RASA only.
 What is RASA?
 It is an open-source machine learning framework to create virtual assistants/chatbots. It uses NLP pipelines and architecture for a chatbot and provides excellent flow.</description>
